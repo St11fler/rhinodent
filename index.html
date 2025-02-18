@@ -11,11 +11,11 @@
       --color-text-light: #333;
       --color-bg-dark: #1f1f1f;
       --color-text-dark: #f1f1f1;
-      --color-primary: #3e79f7; /* Основен цвят: син */
-      --color-secondary: #ff6b6b; /* Втори цвят: червен/розов */
+      --color-primary: #3e79f7;
+      --color-secondary: #ff6b6b;
       --transition-speed: 0.3s;
     }
-
+    
     /* Теми */
     body.light-theme {
       background: var(--color-bg-light);
@@ -25,14 +25,15 @@
       background: var(--color-bg-dark);
       color: var(--color-text-dark);
     }
-
+    
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     }
-
+    
+    /* HEADER */
     header {
       position: sticky;
       top: 0;
@@ -50,23 +51,22 @@
       background-color: rgba(30, 30, 30, 0.8);
       border-bottom-color: #444;
     }
-
     .logo {
       font-size: 1.5rem;
       font-weight: bold;
       color: var(--color-primary);
     }
-
-    /* Хамбургер меню */
+    
+    /* Хамбургер – позициониран в горния десен ъгъл */
     .menu-toggle {
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       background: none;
       border: none;
-      display: none;
       cursor: pointer;
       color: inherit;
+      display: none;
     }
-
+    
     nav {
       display: flex;
       gap: 1rem;
@@ -82,33 +82,35 @@
     nav a:hover {
       color: var(--color-primary);
     }
-
-    /* Адаптивна навигация за мобилни устройства */
+    
+    /* Мобилно меню */
     @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
       nav {
-        position: absolute;
-        top: 60px;
+        position: fixed;
+        top: 0;
         right: 0;
+        height: 100%;
+        width: 80%;
+        background-color: rgba(255,255,255,0.95);
         flex-direction: column;
-        background-color: rgba(255, 255, 255, 0.95);
-        width: 100%;
-        padding: 1rem;
-        box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.1);
+        justify-content: center;
+        align-items: center;
+        gap: 1.5rem;
         transform: translateX(100%);
         transition: transform var(--transition-speed);
+        box-shadow: -2px 0 10px rgba(0,0,0,0.2);
       }
       body.dark-theme nav {
-        background-color: rgba(30, 30, 30, 0.95);
+        background-color: rgba(30,30,30,0.95);
       }
       nav.active {
         transform: translateX(0);
       }
-      .menu-toggle {
-        display: block;
-      }
     }
-
-    /* Бутон за тъмна/светла тема */
+    
     .theme-toggle {
       background: none;
       border: 2px solid var(--color-primary);
@@ -116,15 +118,14 @@
       border-radius: 0.3rem;
       cursor: pointer;
       transition: background var(--transition-speed);
-      margin-left: 1rem;
       color: var(--color-primary);
     }
     .theme-toggle:hover {
       background-color: var(--color-primary);
       color: #fff;
     }
-
-    /* Главни секции */
+    
+    /* Основни секции */
     section {
       width: 90%;
       max-width: 1200px;
@@ -142,8 +143,8 @@
       margin: 0.8rem auto;
       line-height: 1.6;
     }
-
-    /* HERO SECTION (с бекграунд 115.jpg) */
+    
+    /* HERO SECTION */
     .hero {
       position: relative;
       display: flex;
@@ -156,7 +157,6 @@
       text-align: center;
       color: #fff;
     }
-    /* Тъмен Overlay за четимост на текста */
     .hero::before {
       content: "";
       position: absolute;
@@ -176,9 +176,9 @@
     .hero p {
       font-size: 1.25rem;
       max-width: 650px;
-      margin: 0 auto 2rem auto;
+      margin: 0 auto 2rem;
     }
-    .hero .btn-pulse {
+    .btn-pulse {
       display: inline-block;
       background-color: var(--color-secondary);
       color: #fff;
@@ -190,7 +190,7 @@
       text-decoration: none;
       animation: pulse 1.5s infinite;
     }
-    .hero .btn-pulse:hover {
+    .btn-pulse:hover {
       opacity: 0.8;
     }
     @keyframes pulse {
@@ -198,7 +198,24 @@
       50% { transform: scale(1.07); }
       100% { transform: scale(1); }
     }
-
+    
+    /* За нас (About Us) */
+    #about {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: var(--color-bg-light);
+      border-radius: 0.3rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    #about h2 {
+      margin-bottom: 1rem;
+    }
+    #about p {
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
     /* Услуги (cards) */
     .services {
       display: grid;
@@ -222,7 +239,7 @@
       margin-bottom: 0.5rem;
       color: var(--color-primary);
     }
-
+    
     /* Екип */
     .team-wrapper {
       display: flex;
@@ -245,7 +262,7 @@
     .team-member h3 {
       color: var(--color-primary);
     }
-
+    
     /* Галерия (Before/After) */
     .gallery-container {
       position: relative;
@@ -270,7 +287,8 @@
     .slide-caption {
       position: absolute;
       bottom: 10px;
-      left: 0; right: 0;
+      left: 0;
+      right: 0;
       text-align: center;
       color: #fff;
       text-shadow: 0 0 5px #000;
@@ -298,8 +316,8 @@
     .gallery-buttons button:hover {
       background-color: var(--color-secondary);
     }
-
-    /* Секция: Сертификати и постижения */
+    
+    /* Сертификати */
     #certificates {
       text-align: center;
       padding-bottom: 2rem;
@@ -332,8 +350,8 @@
     .certificate-item p {
       padding: 1rem;
     }
-
-    /* Секция: Отзиви от пациенти */
+    
+    /* Отзиви */
     #reviews {
       text-align: center;
       padding-bottom: 2rem;
@@ -371,8 +389,26 @@
       color: var(--color-primary);
       align-self: flex-end;
     }
-
-    /* Секция: Запази час */
+    
+    /* За нас (About Us) */
+    #about {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: var(--color-bg-light);
+      border-radius: 0.3rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+    #about h2 {
+      margin-bottom: 1rem;
+    }
+    #about p {
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    /* Запази час */
     #appointment {
       background: var(--color-bg-light);
       padding: 2rem;
@@ -421,7 +457,7 @@
     #appointment form button:hover {
       background-color: var(--color-secondary);
     }
-
+    
     /* Контакти */
     .contact-info {
       text-align: center;
@@ -460,7 +496,7 @@
     .contact-form button:hover {
       background-color: var(--color-secondary);
     }
-
+    
     /* Google карта */
     .map-container {
       width: 100%;
@@ -475,7 +511,7 @@
       height: 350px;
       border: none;
     }
-
+    
     /* Анимации при скрол */
     .reveal {
       opacity: 0;
@@ -486,8 +522,8 @@
       opacity: 1;
       transform: translateY(0);
     }
-
-    /* Footer със социални бутони */
+    
+    /* Footer */
     footer {
       text-align: center;
       padding: 1rem;
@@ -511,8 +547,8 @@
     .social-links a:hover {
       color: var(--color-secondary);
     }
-
-    /* Modal Styles for Certificates */
+    
+    /* Modal за сертификати */
     .modal {
       display: none;
       position: fixed;
@@ -556,6 +592,7 @@
       <a href="#home">Начало</a>
       <a href="#services">Услуги</a>
       <a href="#team">Екип</a>
+      <a href="#about">За нас</a>
       <a href="#gallery">Галерия</a>
       <a href="#certificates">Сертификати</a>
       <a href="#reviews">Отзиви</a>
@@ -572,10 +609,16 @@
     <a href="https://superdoc.bg/" target="_blank" class="btn-pulse">Запиши час онлайн</a>
   </section>
 
-  <!-- УСЛУГИ -->
+  <!-- За нас (About Us) -->
+  <section id="about" class="reveal">
+    <h2>За нас</h2>
+    <p>РиноДент е водещ медико-дентален център, посветен на предоставянето на висококачествени и иновативни дентални и медицински услуги. Нашият екип от опитни специалисти е винаги готов да осигури индивидуално внимание и модерно лечение, за да гарантира усмивката и здравето на всеки наш пациент.</p>
+  </section>
+
+  <!-- Услуги -->
   <section id="services" class="reveal">
     <h2>Нашите услуги</h2>
-    <p>В „РиноДент“ се предлагат дентални, естетични и УНГ услуги на високо ниво.</p>
+    <p>В „РиноДент“ предлагаме пълен спектър от дентални, естетични и УНГ услуги, подкрепени от модерна апаратура и опитен екип.</p>
     <div class="services">
       <div class="service-card">
         <h3>Дентална медицина</h3>
@@ -596,10 +639,10 @@
     </div>
   </section>
 
-  <!-- ЕКИП -->
+  <!-- Екип -->
   <section id="team" class="reveal">
     <h2>Нашият екип</h2>
-    <p>Водещи специалисти в областта на стоматологията и УНГ болестите.</p>
+    <p>Нашите експерти са водещи специалисти в областта на стоматологията и УНГ болестите.</p>
     <div class="team-wrapper">
       <div class="team-member">
         <img src="rinodent11.png" alt="Снимка Д-р Стефани Стефанова">
@@ -617,22 +660,18 @@
   <!-- ГАЛЕРИЯ (Before/After) -->
   <section id="gallery" class="reveal">
     <h2>Клинични случаи</h2>
-    <p>Вижте реални примери преди и след стоматологични и естетични процедури.</p>
+    <p>Разгледайте нашите успешни лечения с преди и след снимки.</p>
     <div class="gallery-container">
       <div class="gallery-track" id="galleryTrack">
-        <!-- Слайд 1 -->
         <div class="gallery-slide" style="background-image: url('113.jpg');">
           <div class="slide-caption">Преди лечение</div>
         </div>
-        <!-- Слайд 2 -->
         <div class="gallery-slide" style="background-image: url('114.jpg');">
           <div class="slide-caption">След лечение</div>
         </div>
-        <!-- Слайд 3 -->
         <div class="gallery-slide" style="background-image: url('114.jpg');">
           <div class="slide-caption">Преди естетична процедура</div>
         </div>
-        <!-- Слайд 4 -->
         <div class="gallery-slide" style="background-image: url('113.jpg');">
           <div class="slide-caption">След процедурата</div>
         </div>
@@ -644,7 +683,7 @@
     </div>
   </section>
 
-  <!-- Секция: Сертификати и постижения -->
+  <!-- Сертификати и постижения -->
   <section id="certificates" class="reveal">
     <h2>Сертификати и постижения</h2>
     <p>Нашите успехи са подкрепени от множество сертификати и награди.</p>
@@ -661,10 +700,9 @@
         <img src="certificate3.jpg" alt="Сертификат">
         <p>Отличие за високи постижения в УНГ сферата</p>
       </div>
-      <!-- Добавете още сертификати при нужда -->
     </div>
   </section>
-
+  
   <!-- Modal за Сертификати -->
   <div id="modal" class="modal">
     <span class="modal-close">&times;</span>
@@ -672,7 +710,7 @@
     <div id="modal-caption"></div>
   </div>
 
-  <!-- Секция: Отзиви от пациенти -->
+  <!-- Отзиви от пациенти -->
   <section id="reviews" class="reveal">
     <h2>Отзиви от пациенти</h2>
     <p>Прочетете мненията на нашите доволни пациенти.</p>
@@ -695,11 +733,10 @@
         </div>
         <div class="review-author">- Никол Георгиева</div>
       </div>
-      <!-- Добавете още отзиви при нужда -->
     </div>
   </section>
 
-  <!-- Секция: Запази час -->
+  <!-- Запази час -->
   <section id="appointment" class="reveal">
     <h2>Запази час</h2>
     <p>Попълнете данните и ние ще се свържем с Вас за потвърждение.</p>
@@ -714,7 +751,7 @@
     </form>
   </section>
 
-  <!-- КОНТАКТИ -->
+  <!-- Контакти -->
   <section id="contact" class="reveal">
     <h2>Контакти и локация</h2>
     <div class="contact-info">
@@ -722,7 +759,6 @@
       <p>Тел: <a href="tel:0888626892">0888 626892</a></p>
       <p>Email: <a href="mailto:rhinodentsz@gmail.com">rhinodentsz@gmail.com</a></p>
     </div>
-    <!-- Google Map -->
     <div class="map-container">
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2945.4814978058448!2d25.627942415470276!3d42.424887179183034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a856416bd67aed%3A0xd810eb2df73da5f8!2z0KDRj9Cz0LDQvQ!5e0!3m2!1sbg!2sbg!4v1677326966570!5m2!1sbg!2sbg"
@@ -730,8 +766,6 @@
         loading="lazy">
       </iframe>
     </div>
-
-    <!-- Форма за контакт -->
     <div style="margin-top: 2rem;">
       <h3 style="text-align:center;">Изпратете ни съобщение</h3>
       <form class="contact-form" onsubmit="return false">
@@ -743,7 +777,7 @@
     </div>
   </section>
 
-  <!-- FOOTER със социални връзки -->
+  <!-- FOOTER -->
   <footer>
     © DEVELOPED BY ST11FLER  
     <div class="social-links">
@@ -782,18 +816,16 @@
     function updateSlidePosition() {
       galleryTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
     }
-
     nextBtn.addEventListener("click", () => {
       currentSlide = (currentSlide + 1) % totalSlides;
       updateSlidePosition();
     });
-
     prevBtn.addEventListener("click", () => {
       currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
       updateSlidePosition();
     });
 
-    // Анимации при скрол (reveal on scroll)
+    // Анимации при скрол (reveal)
     const revealElements = document.querySelectorAll(".reveal");
     const revealOnScroll = () => {
       revealElements.forEach((el) => {
@@ -828,7 +860,6 @@
       modal.style.display = "none";
     });
 
-    // Затваряне на modal при клик извън съдържанието
     window.addEventListener("click", (event) => {
       if (event.target === modal) {
         modal.style.display = "none";
@@ -836,7 +867,7 @@
     });
   </script>
   
-  <!-- Включване на външния скрипт за запазване на час (appointment.js) -->
+  <!-- Външен скрипт за запазване на час -->
   <script src="appointment.js"></script>
 </body>
 </html>
