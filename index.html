@@ -301,6 +301,77 @@
       background-color: var(--color-secondary);
     }
 
+    /* Секция: Сертификати и постижения */
+    #certificates {
+      text-align: center;
+    }
+    .certificates-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      margin-top: 1.5rem;
+    }
+    .certificate-item {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 0.5rem;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform var(--transition-speed);
+    }
+    body.dark-theme .certificate-item {
+      background-color: rgba(40, 40, 40, 0.9);
+    }
+    .certificate-item:hover {
+      transform: translateY(-5px);
+    }
+    .certificate-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .certificate-item p {
+      padding: 1rem;
+    }
+
+    /* Секция: Отзиви */
+    #reviews {
+      text-align: center;
+    }
+    .reviews-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      margin-top: 1.5rem;
+    }
+    .review-card {
+      background: rgba(255,255,255,0.9);
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 1rem;
+      text-align: left;
+      position: relative;
+      min-height: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform var(--transition-speed);
+    }
+    body.dark-theme .review-card {
+      background-color: rgba(40, 40, 40, 0.9);
+    }
+    .review-card:hover {
+      transform: translateY(-5px);
+    }
+    .review-content {
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+    .review-author {
+      font-weight: bold;
+      color: var(--color-primary);
+      align-self: flex-end;
+    }
+
     /* Секция: Запази час */
     #appointment {
       background: var(--color-bg-light);
@@ -453,6 +524,8 @@
       <a href="#services">Услуги</a>
       <a href="#team">Екип</a>
       <a href="#gallery">Галерия</a>
+      <a href="#certificates">Сертификати</a>
+      <a href="#reviews">Отзиви</a>
       <a href="#appointment">Запази час</a>
       <a href="#contact">Контакти</a>
     </nav>
@@ -535,6 +608,54 @@
     <div class="gallery-buttons">
       <button id="prevBtn">&lt; Предишна</button>
       <button id="nextBtn">Следваща &gt;</button>
+    </div>
+  </section>
+
+  <!-- Секция: Сертификати и постижения -->
+  <section id="certificates" class="reveal">
+    <h2>Сертификати и постижения</h2>
+    <p>Успешното лечение и постоянното обучение на нашия екип са подкрепени от множеството сертификати и награди.</p>
+    <div class="certificates-grid">
+      <div class="certificate-item">
+        <img src="certificate1.jpg" alt="certificate">
+        <p>Сертификат за иновативна дентална практика</p>
+      </div>
+      <div class="certificate-item">
+        <img src="certificate2.jpg" alt="certificate">
+        <p>Участие в конгрес по естетична медицина</p>
+      </div>
+      <div class="certificate-item">
+        <img src="certificate3.jpg" alt="certificate">
+        <p>Отличие за високи постижения в УНГ сферата</p>
+      </div>
+      <!-- Добавете още сертификати при нужда -->
+    </div>
+  </section>
+
+  <!-- Секция: Отзиви от пациенти -->
+  <section id="reviews" class="reveal">
+    <h2>Отзиви от пациенти</h2>
+    <p>Прочетете някои мнения от пациенти, доверили се на „РиноДент“.</p>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-content">
+          „Изключително доволен съм от отношението и вниманието! Препоръчвам горещо.“
+        </div>
+        <div class="review-author">- Иван Петров</div>
+      </div>
+      <div class="review-card">
+        <div class="review-content">
+          „Страхотни професионалисти и модерна апаратура. Резултатите са впечатляващи!“
+        </div>
+        <div class="review-author">- Мария Колева</div>
+      </div>
+      <div class="review-card">
+        <div class="review-content">
+          „Останах приятно изненадана от бързината и качеството на обслужване.“
+        </div>
+        <div class="review-author">- Никол Георгиева</div>
+      </div>
+      <!-- Добавете още отзиви при нужда -->
     </div>
   </section>
 
