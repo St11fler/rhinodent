@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>РиноДент - Демонстрационен сайт</title>
-
   <!-- Основни стилове -->
   <style>
     :root {
@@ -52,7 +51,6 @@
       border-bottom-color: #444;
     }
 
-    /* Лого */
     .logo {
       font-size: 1.5rem;
       font-weight: bold;
@@ -304,6 +302,7 @@
     /* Секция: Сертификати и постижения */
     #certificates {
       text-align: center;
+      padding-bottom: 2rem;
     }
     .certificates-grid {
       display: grid;
@@ -317,6 +316,7 @@
       overflow: hidden;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       transition: transform var(--transition-speed);
+      cursor: pointer;
     }
     body.dark-theme .certificate-item {
       background-color: rgba(40, 40, 40, 0.9);
@@ -333,9 +333,10 @@
       padding: 1rem;
     }
 
-    /* Секция: Отзиви */
+    /* Секция: Отзиви от пациенти */
     #reviews {
       text-align: center;
+      padding-bottom: 2rem;
     }
     .reviews-grid {
       display: grid;
@@ -349,12 +350,11 @@
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       padding: 1rem;
       text-align: left;
-      position: relative;
-      min-height: 150px;
+      transition: transform var(--transition-speed);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: transform var(--transition-speed);
+      min-height: 150px;
     }
     body.dark-theme .review-card {
       background-color: rgba(40, 40, 40, 0.9);
@@ -511,6 +511,39 @@
     .social-links a:hover {
       color: var(--color-secondary);
     }
+
+    /* Modal Styles for Certificates */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.8);
+    }
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 90%;
+      max-height: 80%;
+    }
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #modal-caption {
+      text-align: center;
+      color: #fff;
+      padding: 1rem;
+    }
   </style>
 </head>
 <body class="light-theme">
@@ -533,7 +566,7 @@
   </header>
 
   <!-- HERO SECTION -->
-  <section class="hero" id="home">
+  <section class="hero reveal" id="home">
     <h1>Медико-дентален център „РиноДент“</h1>
     <p>Професионални стоматологични и медицински услуги в Стара Загора</p>
     <a href="https://superdoc.bg/" target="_blank" class="btn-pulse">Запиши час онлайн</a>
@@ -614,28 +647,35 @@
   <!-- Секция: Сертификати и постижения -->
   <section id="certificates" class="reveal">
     <h2>Сертификати и постижения</h2>
-    <p>Успешното лечение и постоянното обучение на нашия екип са подкрепени от множеството сертификати и награди.</p>
+    <p>Нашите успехи са подкрепени от множество сертификати и награди.</p>
     <div class="certificates-grid">
-      <div class="certificate-item">
-        <img src="certificate1.jpg" alt="certificate">
+      <div class="certificate-item" data-img="certificate1.jpg" data-caption="Сертификат за иновативна дентална практика">
+        <img src="certificate1.jpg" alt="Сертификат">
         <p>Сертификат за иновативна дентална практика</p>
       </div>
-      <div class="certificate-item">
-        <img src="certificate2.jpg" alt="certificate">
+      <div class="certificate-item" data-img="certificate2.jpg" data-caption="Участие в конгрес по естетична медицина">
+        <img src="certificate2.jpg" alt="Сертификат">
         <p>Участие в конгрес по естетична медицина</p>
       </div>
-      <div class="certificate-item">
-        <img src="certificate3.jpg" alt="certificate">
+      <div class="certificate-item" data-img="certificate3.jpg" data-caption="Отличие за високи постижения в УНГ сферата">
+        <img src="certificate3.jpg" alt="Сертификат">
         <p>Отличие за високи постижения в УНГ сферата</p>
       </div>
       <!-- Добавете още сертификати при нужда -->
     </div>
   </section>
 
+  <!-- Modal за Сертификати -->
+  <div id="modal" class="modal">
+    <span class="modal-close">&times;</span>
+    <img class="modal-content" id="modal-img">
+    <div id="modal-caption"></div>
+  </div>
+
   <!-- Секция: Отзиви от пациенти -->
   <section id="reviews" class="reveal">
     <h2>Отзиви от пациенти</h2>
-    <p>Прочетете някои мнения от пациенти, доверили се на „РиноДент“.</p>
+    <p>Прочетете мненията на нашите доволни пациенти.</p>
     <div class="reviews-grid">
       <div class="review-card">
         <div class="review-content">
@@ -766,6 +806,34 @@
     };
     window.addEventListener("scroll", revealOnScroll);
     revealOnScroll();
+
+    // Modal функционалност за сертификати
+    const modal = document.getElementById("modal");
+    const modalImg = document.getElementById("modal-img");
+    const modalCaption = document.getElementById("modal-caption");
+    const modalClose = document.querySelector(".modal-close");
+
+    const certificateItems = document.querySelectorAll(".certificate-item");
+    certificateItems.forEach(item => {
+      item.addEventListener("click", () => {
+        const imgSrc = item.getAttribute("data-img");
+        const captionText = item.getAttribute("data-caption");
+        modalImg.src = imgSrc;
+        modalCaption.textContent = captionText;
+        modal.style.display = "block";
+      });
+    });
+
+    modalClose.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+
+    // Затваряне на modal при клик извън съдържанието
+    window.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    });
   </script>
   
   <!-- Включване на външния скрипт за запазване на час (appointment.js) -->
