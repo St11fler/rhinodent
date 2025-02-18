@@ -32,7 +32,24 @@
       box-sizing: border-box;
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     }
-    
+    /* За нас (About Us) */
+    #about {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: var(--color-bg-light);
+      color: var(--color-text-light);
+      border-radius: 0.3rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+  }
+
+/* Поправка за тъмната тема */
+    body.dark-theme #about {
+      background: var(--color-bg-dark);
+      color: var(--color-text-dark);
+      box-shadow: 0 4px 8px rgba(255,255,255,0.1);
+    }
+
     /* HEADER */
     header {
       position: sticky;
